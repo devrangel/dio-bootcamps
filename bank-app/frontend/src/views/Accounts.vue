@@ -4,6 +4,7 @@
       <template v-slot:default>
         <thead>
           <tr>
+            <th class="text-center">Número</th>
             <th class="text-center">Conta</th>
             <th class="text-center">Nome</th>
             <th class="text-center">Saldo</th>
@@ -15,38 +16,23 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in desserts" :key="item.id">
+          <tr v-for="item in accounts" :key="item.id">
+            <td class="text-center">{{ item.id }}</td>
             <td class="text-center">{{ item.tipoConta }}</td>
             <td class="text-center">{{ item.nome }}</td>
             <td class="text-center">{{ item.saldo }}</td>
             <td class="text-center">{{ item.credito }}</td>
             <td class="text-center">
-              <v-btn router-link :to="{ name: 'Sacar', params: {id: item.id } }" elevation="1">
-                  <v-icon>
-                    mdi-bank-transfer-out
-                  </v-icon>
-              </v-btn>
+              <SacarDialog :data="item"/>
             </td>
             <td class="text-center">
-              <v-btn router-link :to="{ name: 'Depositar', params: {id: item.id } }" elevation="1">
-                  <v-icon>
-                    mdi-bank-transfer-in
-                  </v-icon>
-              </v-btn>
+              <DepositarDialog :data="item"/>
             </td>
             <td class="text-center">
-              <v-btn router-link :to="{ name: 'Transferir', params: {id: item.id } }" elevation="1">
-                  <v-icon>
-                    mdi-bank-transfer
-                  </v-icon>
-              </v-btn>
+              <TransferirDialog :data="item"/>
             </td>
             <td class="text-center">
-              <v-btn router-link :to="{ name: 'Edit', params: {id: item.id } }" elevation="1">
-                  <v-icon>
-                    mdi-account-edit-outline
-                  </v-icon>
-              </v-btn>
+              <EditarDialog :data="item"/>
             </td>
           </tr>
         </tbody>
@@ -56,35 +42,50 @@
 </template>
 
 <script>
-  export default {
-    name: 'Accounts',
+import SacarDialog from '@/components/SacarDialog.vue';
+import DepositarDialog from '@/components/DepositarDialog.vue';
+import TransferirDialog from '@/components/TransferirDialog.vue';
+import EditarDialog from '@/components/EditarDialog.vue';
 
-    data() {
-      return {
-        desserts: [
-          {
-            id: 0,
-            tipoConta: 'Pessoa Jurídica',
-            nome: 'Frozen Yogurt',
-            saldo: 12530.00,
-            credito: 500.00
-          },
-          {
-            id: 1,
-            tipoConta: 'Pessoa Jurídica',
-            nome: 'Ice cream sandwich',
-            saldo: 14280.00,
-            credito: 300.00
-          },
-          {
-            id: 2,
-            tipoConta: 'Pessoa Física',
-            nome: 'Eclair',
-            saldo: 1800.00,
-            credito: 250.00
-          }
-        ],
-      }
+export default {
+  name: 'Accounts',
+
+  components: {
+    SacarDialog,
+    DepositarDialog,
+    TransferirDialog,
+    EditarDialog,
+  },
+
+  data() {
+    return {
+      accounts: [
+        {
+          id: 0,
+          tipoConta: 'Pessoa Jurídica',
+          tipoContaValue: 1,
+          nome: 'Frozen Yogurt',
+          saldo: 12530.00,
+          credito: 500.00
+        },
+        {
+          id: 1,
+          tipoConta: 'Pessoa Jurídica',
+          tipoContaValue: 1,
+          nome: 'Ice cream sandwich',
+          saldo: 14280.00,
+          credito: 300.00
+        },
+        {
+          id: 2,
+          tipoConta: 'Pessoa Física',
+          tipoContaValue: 0,
+          nome: 'Eclair',
+          saldo: 1800.00,
+          credito: 250.00
+        }
+      ],
     }
   }
+}
 </script>
