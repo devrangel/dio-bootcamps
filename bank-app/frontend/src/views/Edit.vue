@@ -1,12 +1,12 @@
 <template>
   <v-container class="text-center mt-10">
-    About
+    Edit
   </v-container>
 </template>
 
 <script>
   export default {
-    name: 'About',
+    name: 'Edit',
 
     data: () => ({
       
