@@ -4,6 +4,9 @@ import Home from '../views/Home.vue'
 import Accounts from '../views/Accounts.vue'
 import About from '../views/About.vue'
 import Edit from '../views/Edit.vue'
+import Sacar from '../views/Sacar.vue'
+import Depositar from '../views/Depositar.vue'
+import Transferir from '../views/Transferir.vue'
 
 Vue.use(VueRouter)
 
@@ -27,6 +30,21 @@ const routes = [
     path: '/edit/:id',
     name: 'Edit',
     component: Edit
+  },
+  {
+    path: '/sacar/:id',
+    name: 'Sacar',
+    component: Sacar
+  },
+  {
+    path: '/depositar/:id',
+    name: 'Depositar',
+    component: Depositar
+  },
+  {
+    path: '/transferir/:id',
+    name: 'Transferir',
+    component: Transferir
   },
 ]
 
