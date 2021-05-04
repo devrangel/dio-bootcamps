@@ -18,7 +18,7 @@
                 </v-container>
 
                 <v-btn class="mr-4 primary"> 
-                    Editar
+                    Salvar
                 </v-btn>
 
                 <v-btn class="error" @click="dialog = false">

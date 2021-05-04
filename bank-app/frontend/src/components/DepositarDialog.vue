@@ -18,7 +18,7 @@
                     <strong>Nome: </strong>{{ data.nome }}
                 </div>
 
-                <v-text-field class="mt-6" label="Valor do deposito" solo placeholder="Valor do deposito"></v-text-field>
+                <v-text-field class="mt-6" label="Valor do depósito" solo placeholder="Valor do depósito"></v-text-field>
 
                 <v-btn class="mr-4 primary"> 
                     Depositar
