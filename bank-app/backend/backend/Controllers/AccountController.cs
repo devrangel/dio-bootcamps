@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace backend.Controllers
 {
-    [Route("v1/accounts")]
+    [Route("api/v1/accounts")]
     public class AccountController : ControllerBase
     {
         private readonly AccountService _accountService;

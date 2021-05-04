@@ -1,5 +1,4 @@
-﻿using backend.Models.Enums;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace backend.Models
 {
@@ -13,14 +12,16 @@ namespace backend.Models
         public string Nome { get; set; }
 
         [Required(ErrorMessage = "{0} é obrigatório")]
-        public TipoConta TipoConta { get; set; }
+        public string TipoConta { get; set; }
 
         [Required(ErrorMessage = "{0} é obrigatório")]
         [Range(0, 1000000, ErrorMessage = "{0} deve estar entre {1} e {2}")]
+        [DataType(DataType.Currency)]
         public double Saldo { get; set; }
 
         [Required(ErrorMessage = "{0} é obrigatório")]
         [Range(0, 10000, ErrorMessage = "{0} deve estar entre {1} e {2}")]
+        [DataType(DataType.Currency)]
         public double Credito { get; set; }
 
         public Account()
@@ -28,7 +29,7 @@ namespace backend.Models
 
         }
 
-        public Account(string nome, TipoConta tipoConta, double saldo, double credito)
+        public Account(string nome, string tipoConta, double saldo, double credito)
         {
             Nome = nome;
             TipoConta = tipoConta;

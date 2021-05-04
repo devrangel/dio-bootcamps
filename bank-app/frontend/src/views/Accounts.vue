@@ -47,6 +47,8 @@ import DepositarDialog from '@/components/DepositarDialog.vue';
 import TransferirDialog from '@/components/TransferirDialog.vue';
 import EditarDialog from '@/components/EditarDialog.vue';
 
+import Account from '../services/accounts.js';
+
 export default {
   name: 'Accounts',
 
@@ -59,33 +61,18 @@ export default {
 
   data() {
     return {
-      accounts: [
-        {
-          id: 0,
-          tipoConta: 'Pessoa Jurídica',
-          tipoContaValue: 1,
-          nome: 'Frozen Yogurt',
-          saldo: 12530.00,
-          credito: 500.00
-        },
-        {
-          id: 1,
-          tipoConta: 'Pessoa Jurídica',
-          tipoContaValue: 1,
-          nome: 'Ice cream sandwich',
-          saldo: 14280.00,
-          credito: 300.00
-        },
-        {
-          id: 2,
-          tipoConta: 'Pessoa Física',
-          tipoContaValue: 0,
-          nome: 'Eclair',
-          saldo: 1800.00,
-          credito: 250.00
-        }
-      ],
+      accounts: [],
     }
+  },
+
+  mounted() {
+    Account.findAllAccounts()
+      .then(res => {
+        this.accounts = res.data;
+      })
+      .catch(err => {
+        console.error("Não foi possível carregar as contas");
+      });
   }
 }
 </script>

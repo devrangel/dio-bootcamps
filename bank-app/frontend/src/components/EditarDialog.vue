@@ -40,7 +40,7 @@ export default {
   data() {
     return {
         tipoConta: ["Física", "Jurídica"],
-        contaValue: this.data.tipoContaValue,
+        contaValue: this.data.tipoConta === "Física" ? 0 : 1,
         dialog: false,
     };
   },
