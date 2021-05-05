@@ -59,8 +59,15 @@ namespace backend.Controllers
 
             try
             {
-                await _accountService.SacarAsync(id, viewModel);
-
+                if(viewModel.Action == "sacar")
+                {
+                    await _accountService.SacarAsync(id, viewModel);
+                }
+                else if(viewModel.Action == "depositar")
+                {
+                    await _accountService.DepositartAsync(id, viewModel);
+                }
+                
                 return Ok(viewModel);
             }
             catch(ApplicationException e)

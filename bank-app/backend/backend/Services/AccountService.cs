@@ -37,7 +37,29 @@ namespace backend.Services
                 throw new NotFoundException("Conta não encontrada");
             }
 
-            viewModel.Account.Sacar(viewModel.ValorSaque);
+            viewModel.Account.Sacar(viewModel.Valor);
+
+            try
+            {
+                _context.Entry<Account>(viewModel.Account).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw new DbConcurrencyException("Este registro já foi atualizado");
+            }
+        }
+
+        public async Task DepositartAsync(int id, AccountViewModel viewModel)
+        {
+            bool hasAny = await _context.Account.AnyAsync(x => x.Id == id);
+
+            if (!hasAny)
+            {
+                throw new NotFoundException("Conta não encontrada");
+            }
+
+            viewModel.Account.Depositar(viewModel.Valor);
 
             try
             {

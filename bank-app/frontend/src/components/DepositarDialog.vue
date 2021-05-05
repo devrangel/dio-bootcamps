@@ -18,9 +18,9 @@
                     <strong>Nome: </strong>{{ data.nome }}
                 </div>
 
-                <v-text-field class="mt-6" label="Valor do depósito" solo placeholder="Valor do depósito"></v-text-field>
+                <v-text-field class="mt-6" label="Valor do depósito" solo placeholder="Valor do depósito" v-model="viewModel.valor"></v-text-field>
 
-                <v-btn class="mr-4 primary"> 
+                <v-btn class="mr-4 primary" @click="sendDeposito()"> 
                     Depositar
                 </v-btn>
 
@@ -33,6 +33,8 @@
 </template>
 
 <script>
+import Account from '../services/accounts.js';
+
 export default {
   name: "DepositarDialog",
 
@@ -42,8 +44,22 @@ export default {
 
   data() {
     return {
+        viewModel: {
+            account: this.data,
+            action: 'depositar'
+        },
         dialog: false,
     };
   },
+
+  methods: {
+      sendDeposito() {
+          Account.updateAccount(this.data.id, this.viewModel)
+            .then((response) => {
+                this.data.saldo = response.data.account.saldo;
+                this.dialog = false;
+            });
+      }
+  }
 };
 </script>

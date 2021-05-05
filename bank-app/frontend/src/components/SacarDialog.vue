@@ -26,7 +26,7 @@
                     <strong>Crédito: </strong>{{ data.credito }}
                 </div>
 
-                <v-text-field class="mt-6" label="Valor do saque" solo placeholder="Valor do saque" v-model="viewModel.valorSaque"></v-text-field>
+                <v-text-field class="mt-6" label="Valor do saque" solo placeholder="Valor do saque" v-model="viewModel.valor"></v-text-field>
 
                 <v-btn class="mr-4 primary" @click="sendSaque()"> 
                     Sacar
@@ -53,7 +53,8 @@ export default {
   data() {
     return {
         viewModel: {
-            account: this.data
+            account: this.data,
+            action: 'sacar'
         },
         dialog: false,
     };

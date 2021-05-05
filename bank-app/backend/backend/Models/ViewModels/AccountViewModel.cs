@@ -9,6 +9,8 @@ namespace backend.Models.ViewModels
         [Required(ErrorMessage = "{0} é obrigatório")]
         [Range(0, 10000, ErrorMessage = "{0} deve estar entre {1} e {2}")]
         [DataType(DataType.Currency)]
-        public double ValorSaque { get; set; }
+        public double Valor { get; set; }
+
+        public string Action { get; set; }
     }
 }
