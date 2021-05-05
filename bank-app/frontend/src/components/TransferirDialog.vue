@@ -26,15 +26,15 @@
                     <strong>Para: </strong>
                 </div>
 
-                <v-text-field class="mt-6" label="Número da conta" solo placeholder="Número da conta"></v-text-field>
+                <v-text-field class="mt-6" label="Número da conta" solo placeholder="Número da conta" v-model="viewModel.sendToAccount"></v-text-field>
 
                 <div class="mb-1 text-left">
                     <strong>Valor: </strong>
                 </div>
 
-                <v-text-field class="mt-6" label="Valor de transferência" solo placeholder="Valor de transferência"></v-text-field>
+                <v-text-field class="mt-6" label="Valor de transferência" solo placeholder="Valor de transferência" v-model="viewModel.valor"></v-text-field>
 
-                <v-btn class="mr-4 primary"> 
+                <v-btn class="mr-4 primary" v-on:click="sendTransferir()">
                     Transferir
                 </v-btn>
 
@@ -47,6 +47,8 @@
 </template>
 
 <script>
+import Account from '../services/accounts.js';
+
 export default {
   name: "TransferirDialog",
 
@@ -56,8 +58,31 @@ export default {
 
   data() {
     return {
+        viewModel: {
+            account: this.data,
+            action: "transferir"
+        },
         dialog: false,
     };
   },
+
+  methods: {
+      sendTransferir() {
+          Account.updateAccount(this.data.id, this.viewModel)
+            .then((response) => {                
+                this.data.saldo = response.data.account.saldo;
+
+                let acc = {
+                    id: response.data.toAccount.id,
+                    saldo: response.data.toAccount.saldo
+                };
+
+                this.$emit('newSaldo', acc);
+
+                this.dialog = false;
+                
+            });
+      }
+  }
 };
 </script>

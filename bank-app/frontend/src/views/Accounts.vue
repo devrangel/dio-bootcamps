@@ -29,7 +29,7 @@
               <DepositarDialog :data="item"/>
             </td>
             <td class="text-center">
-              <TransferirDialog :data="item"/>
+              <TransferirDialog :data="item" v-on:newSaldo="toAccount = $event"/>
             </td>
             <td class="text-center">
               <EditarDialog :data="item"/>
@@ -62,6 +62,19 @@ export default {
   data() {
     return {
       accounts: [],
+      toAccount: Object
+    }
+  },
+
+  watch: {
+    toAccount: function(obj) {
+      let hasAccountIndex = this.accounts.findIndex(account => account.id === obj.id);
+
+      if(hasAccountIndex !== -1) {
+        this.accounts[hasAccountIndex].saldo = obj.saldo;
+      } else {
+          console.log("Não encontrado");
+      }
     }
   },
 

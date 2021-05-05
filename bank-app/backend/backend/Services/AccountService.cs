@@ -50,7 +50,7 @@ namespace backend.Services
             }
         }
 
-        public async Task DepositartAsync(int id, AccountViewModel viewModel)
+        public async Task DepositarAsync(int id, AccountViewModel viewModel)
         {
             bool hasAny = await _context.Account.AnyAsync(x => x.Id == id);
 
@@ -64,6 +64,37 @@ namespace backend.Services
             try
             {
                 _context.Entry<Account>(viewModel.Account).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw new DbConcurrencyException("Este registro já foi atualizado");
+            }
+        }
+
+        public async Task TransferirAsync(int id, AccountViewModel viewModel)
+        {
+            bool hasAnyFrom = await _context.Account.AnyAsync(x => x.Id == id);
+            bool hasAnyTo = await _context.Account.AnyAsync(x => x.Id == viewModel.SendToAccount);
+
+            if (!hasAnyFrom)
+            {
+                throw new NotFoundException("Conta remetente não encontrada");
+            }
+
+            if (!hasAnyTo)
+            {
+                throw new NotFoundException("Conta destinatária não encontrada");
+            }
+
+            viewModel.ToAccount = await findByIdAsync(viewModel.SendToAccount);
+
+            viewModel.Account.Transferir(viewModel.Valor, viewModel.ToAccount);
+
+            try
+            {
+                _context.Entry<Account>(viewModel.Account).State = EntityState.Modified;
+                _context.Entry<Account>(viewModel.ToAccount).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
