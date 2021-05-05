@@ -26,9 +26,9 @@
                     <strong>Crédito: </strong>{{ data.credito }}
                 </div>
 
-                <v-text-field class="mt-6" label="Valor do saque" solo placeholder="Valor do saque"></v-text-field>
+                <v-text-field class="mt-6" label="Valor do saque" solo placeholder="Valor do saque" v-model="viewModel.valorSaque"></v-text-field>
 
-                <v-btn class="mr-4 primary"> 
+                <v-btn class="mr-4 primary" @click="sendSaque()"> 
                     Sacar
                 </v-btn>
 
@@ -41,6 +41,8 @@
 </template>
 
 <script>
+import Account from '../services/accounts.js';
+
 export default {
   name: "SacarDialog",
 
@@ -50,8 +52,21 @@ export default {
 
   data() {
     return {
+        viewModel: {
+            account: this.data
+        },
         dialog: false,
     };
   },
+
+  methods: {
+      sendSaque() {
+          Account.updateAccount(this.data.id, this.viewModel)
+            .then((response) => {
+                this.data.saldo = response.data.account.saldo;
+                this.dialog = false;
+            });
+      }
+  }
 };
 </script>
