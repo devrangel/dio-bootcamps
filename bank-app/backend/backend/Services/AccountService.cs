@@ -102,5 +102,28 @@ namespace backend.Services
                 throw new DbConcurrencyException("Este registro já foi atualizado");
             }
         }
+
+        public async Task EditarAsync(int id, AccountViewModel viewModel)
+        {
+            bool hasAny = await _context.Account.AnyAsync(x => x.Id == id);
+
+            if (!hasAny)
+            {
+                throw new NotFoundException("Conta não encontrada");
+            }
+
+            viewModel.Account.Nome = viewModel.UpdatedNome;
+            viewModel.Account.TipoConta = viewModel.UpdatedTipoConta;
+
+            try
+            {
+                _context.Entry<Account>(viewModel.Account).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw new DbConcurrencyException("Este registro já foi atualizado");
+            }
+        }
     }
 }

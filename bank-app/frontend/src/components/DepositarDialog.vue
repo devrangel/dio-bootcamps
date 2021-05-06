@@ -46,7 +46,9 @@ export default {
     return {
         viewModel: {
             account: this.data,
-            action: 'depositar'
+            action: 'depositar',
+            updatedNome: this.data.nome,
+            updatedTipoConta: this.data.tipoConta
         },
         dialog: false,
     };

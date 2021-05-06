@@ -66,10 +66,14 @@ namespace backend.Controllers
                 else if(viewModel.Action == "depositar")
                 {
                     await _accountService.DepositarAsync(id, viewModel);
-                } 
+                }
                 else if(viewModel.Action == "transferir")
                 {
                     await _accountService.TransferirAsync(id, viewModel);
+                }
+                else if(viewModel.Action == "editar")
+                {
+                    await _accountService.EditarAsync(id, viewModel);
                 }
                 
                 return Ok(viewModel);

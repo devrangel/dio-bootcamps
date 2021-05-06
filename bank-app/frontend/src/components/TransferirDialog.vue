@@ -60,7 +60,9 @@ export default {
     return {
         viewModel: {
             account: this.data,
-            action: "transferir"
+            action: "transferir",
+            updatedNome: this.data.nome,
+            updatedTipoConta: this.data.tipoConta
         },
         dialog: false,
     };
