@@ -1,5 +1,5 @@
 <template>
-    <v-dialog persistent transition="dialog-bottom-transition" max-width="350" v-model="dialog">
+    <v-dialog persistent transition="dialog-bottom-transition" max-width="400" v-model="dialog">
         <template v-slot:activator="{ on, attrs }">
             <v-btn v-bind="attrs" v-on="on" elevation="1">
                 <v-icon> 
@@ -9,7 +9,7 @@
         </template>
 
         <template>
-            <v-card class="text-center pa-6" elevation="2" mx-auto width="350">
+            <v-card class="text-center pa-6" elevation="2" mx-auto width="400">
                 <v-container>
                     <v-row>
                         <v-text-field label="Nome" required v-model="viewModel.updatedNome"></v-text-field>
@@ -21,8 +21,12 @@
                     Salvar
                 </v-btn>
 
-                <v-btn class="error" @click="dialog = false">
+                <v-btn class="mr-4 warning" @click="dialog = false">
                     Voltar
+                </v-btn>
+
+                <v-btn class="error" @click="sendDeletar()">
+                    Deletar
                 </v-btn>
             </v-card>
         </template>
@@ -57,6 +61,14 @@ export default {
                 this.data.tipoConta = response.data.account.tipoConta;
                 this.data.nome = response.data.account.nome;
                 this.dialog = false;
+            });
+      },
+
+      sendDeletar() {
+          Account.deletarAccount(this.data.id)
+            .then(() => {
+                this.dialog = false;
+                this.$router.go();
             });
       }
   }

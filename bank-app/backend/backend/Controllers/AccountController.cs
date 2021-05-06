@@ -88,8 +88,20 @@ namespace backend.Controllers
             }
         }
 
-        //[HttpDelete]
-        //[Route("")]
+        [HttpDelete]
+        [Route("{id:int}")]
+        public async Task<ActionResult<Account>> Delete(int id)
+        {
+            try
+            {
+                await _accountService.RemoveAsync(id);
+                return Ok(new { message = "Conta removida com sucesso" });
+            }
+            catch (Exception)
+            {
+                return BadRequest(new { message = "Não foi possível remover a conta" });
+            }
+        }
 
     }
 }

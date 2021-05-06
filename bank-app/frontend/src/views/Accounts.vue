@@ -8,7 +8,6 @@
             <th class="text-center">Conta</th>
             <th class="text-center">Nome</th>
             <th class="text-center">Saldo</th>
-            <th class="text-center">Crédito</th>
             <th class="text-center">Sacar</th>
             <th class="text-center">Depositar</th>
             <th class="text-center">Transferir</th>
@@ -21,7 +20,6 @@
             <td class="text-center">{{ item.tipoConta }}</td>
             <td class="text-center">{{ item.nome }}</td>
             <td class="text-center">{{ item.saldo }}</td>
-            <td class="text-center">{{ item.credito }}</td>
             <td class="text-center">
               <SacarDialog :data="item"/>
             </td>
@@ -32,7 +30,7 @@
               <TransferirDialog :data="item" v-on:newSaldo="toAccount = $event"/>
             </td>
             <td class="text-center">
-              <EditarDialog :data="item"/>
+              <EditarDialog :data="item" />
             </td>
           </tr>
         </tbody>
@@ -62,7 +60,7 @@ export default {
   data() {
     return {
       accounts: [],
-      toAccount: Object
+      toAccount: Object,
     }
   },
 

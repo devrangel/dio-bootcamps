@@ -8,4 +8,8 @@ export default {
     updateAccount: async (id, viewModel) => {
         return await http.put(`accounts/${id}`, viewModel);
     },
+
+    deletarAccount: async (id) => {
+        return await http.delete(`accounts/${id}`);
+    }
 }

@@ -125,5 +125,26 @@ namespace backend.Services
                 throw new DbConcurrencyException("Este registro já foi atualizado");
             }
         }
+
+        public async Task RemoveAsync(int id)
+        {
+            bool hasAny = await _context.Account.AnyAsync(x => x.Id == id);
+
+            if (!hasAny)
+            {
+                throw new NotFoundException("Conta não encontrada");
+            }
+
+            try
+            {
+                Account account = await _context.Account.FirstOrDefaultAsync(x => x.Id == id);
+                _context.Account.Remove(account);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw new DbConcurrencyException("Este registro já foi removido");
+            }
+        }
     }
 }

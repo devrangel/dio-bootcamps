@@ -17,7 +17,6 @@ namespace backend.Models.ViewModels
         [Required(ErrorMessage = "{0} é obrigatório")]
         public int SendToAccount { get; set; }
 
-
         [Required(ErrorMessage = "Este campo é obrigatório")]
         [StringLength(60, MinimumLength = 3, ErrorMessage = "{0} deve ser entre {2} e {1}")]
         public string UpdatedNome { get; set; }

@@ -19,22 +19,16 @@ namespace backend.Models
         [DataType(DataType.Currency)]
         public double Saldo { get; set; }
 
-        [Required(ErrorMessage = "{0} é obrigatório")]
-        [Range(0, 10000, ErrorMessage = "{0} deve estar entre {1} e {2}")]
-        [DataType(DataType.Currency)]
-        public double Credito { get; set; }
-
         public Account()
         {
 
         }
 
-        public Account(string nome, string tipoConta, double saldo, double credito)
+        public Account(string nome, string tipoConta, double saldo)
         {
             Nome = nome;
             TipoConta = tipoConta;
             Saldo = saldo;
-            Credito = credito;
         }
 
         public bool Sacar(double valorSaque)
