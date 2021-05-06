@@ -13,9 +13,6 @@
       <v-btn text router-link to="/accounts">
         Accounts
       </v-btn>
-      <v-btn text router-link to="/about">
-        About
-      </v-btn>
 
       <v-spacer></v-spacer>
 
