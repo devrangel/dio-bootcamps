@@ -1,3 +1,16 @@
+### Projeto *"Criando uma aplicação de transferências bancárias com .NET"* do bootcamp da DIO. Foi adicionado ao projeto uma versão com frontend usando Vue.js para simular as operações bancárias.
+
+No backend foi utilizado:
+* .NET 5
+* InMemory Database
+* SPA Services
+
+No frontend:
+* Vue.js 2
+* Vue Router
+* Vuetify
+* Axios
+
 <div>
     <h2 align="center">Backend</h2>
     <p align="center">
