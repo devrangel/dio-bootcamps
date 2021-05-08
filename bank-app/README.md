@@ -9,7 +9,10 @@ No frontend:
 * Vue.js 2
 * Vue Router
 * Vuetify
-* Axios
+* 
+
+TODO:
+* Adicionar validações no backend e frontend
 
 <div>
     <h2 align="center">Backend</h2>
