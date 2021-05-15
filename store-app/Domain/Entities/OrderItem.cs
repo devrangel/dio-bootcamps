@@ -1,6 +1,6 @@
 ﻿namespace Domain.Entities
 {
-    class OrderItem : Entity
+    public class OrderItem : Entity
     {
         public Product Product { get; private set; }
         public decimal Price { get; private set; }

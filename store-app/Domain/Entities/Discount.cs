@@ -2,7 +2,7 @@
 
 namespace Domain.Entities
 {
-    class Discount : Entity
+    public class Discount : Entity
     {
         public decimal Amount { get; private set; }
         public DateTime ExpireDate { get; private set; }

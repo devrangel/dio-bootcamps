@@ -1,6 +1,6 @@
 ﻿namespace Domain.Entities
 {
-    class Product : Entity
+    public class Product : Entity
     {
         public string Title { get; private set; }
         public decimal Price { get; private set; }

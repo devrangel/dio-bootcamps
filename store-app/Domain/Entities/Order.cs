@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace Domain.Entities
 {
-    class Order : Entity
+    public class Order : Entity
     {
-        public Costumer Costumer { get; private set; }
+        public Customer Customer { get; private set; }
         public DateTime Date { get; private set; }
         public string Number { get; private set; }
         public IList<OrderItem> Items { get; private set; }
@@ -14,9 +14,9 @@ namespace Domain.Entities
         public Discount Discount { get; private set; }
         public EOrderStatus Status { get; private set; }
 
-        public Order(Costumer costumer, decimal deliveryFee, Discount discount)
+        public Order(Customer customer, decimal deliveryFee, Discount discount)
         {
-            Costumer = costumer;
+            Customer = customer;
             Date = DateTime.Now;
             Number = Guid.NewGuid().ToString().Substring(0, 8);
             Status = EOrderStatus.WaitingPayment;
@@ -33,7 +33,7 @@ namespace Domain.Entities
             if (product == null)
                 return;
 
-            if (quantity < 0)
+            if (quantity <= 0)
                 return;
             // ------
 
