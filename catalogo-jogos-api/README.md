@@ -1,8 +1,7 @@
-### Projeto *"Criando um APP simples de cadastro de séries em .NET"* do bootcamp da DIO. Foi adicionado ao projeto um CRUD e utilização do Swagger para documentação e teste da API.
+### Projeto *"Criando um catálogo de jogos usando boas práticas de arquitetura com .NET"* do bootcamp da DIO. 
 
 Foram utilizados:
 * .NET 5
-* InMemory Database
 * Swagger
 
 <div>
